@@ -22,7 +22,7 @@ Sliding window / two pointers
 
 
 
-Sorting, binary search
+Sorting
 
 
 
