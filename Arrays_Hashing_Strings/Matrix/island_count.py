@@ -11,29 +11,29 @@ def main(mx):
     removed_item = Q.pop(0)
     count += 1
 
-    #while len(Q) > 0:
-    if [removed_item[1], removed_item[1] - 1] in Q:
-        removed_item = Q.pop(Q.index([removed_item[1], removed_item[1] - 1]))
+    while len(Q) > 0:
+        if [removed_item[1], removed_item[1] - 1] in Q:
+            removed_item = Q.pop(Q.index([removed_item[1], removed_item[1] - 1]))
 
-    elif [removed_item[1] - 1, removed_item[1]] in Q:
-        removed_item = Q.pop(Q.index([removed_item[1] - 1, removed_item[1]]))
+        elif [removed_item[1] - 1, removed_item[1]] in Q:
+            removed_item = Q.pop(Q.index([removed_item[1] - 1, removed_item[1]]))
 
-    elif [removed_item[1], removed_item[1] + 1] in Q:
-        removed_item = Q.pop(Q.index([removed_item[1], removed_item[1] + 1]))
+        elif [removed_item[1], removed_item[1] + 1] in Q:
+            removed_item = Q.pop(Q.index([removed_item[1], removed_item[1] + 1]))
 
-    elif [removed_item[1] + 1, removed_item[1]] in Q:
-        removed_item = Q.pop(Q.index([removed_item[1] + 1, removed_item[1]]))
-    else:
-        removed_item = Q.pop(0)
-        count += 1
+        elif [removed_item[1] + 1, removed_item[1]] in Q:
+            removed_item = Q.pop(Q.index([removed_item[1] + 1, removed_item[1]]))
+        else:
+            removed_item = Q.pop(0)
+            count += 1
 
-    print(removed_item, Q)
+    print(removed_item, Q, count)
 
 print(main([
-  ["1","1","0","0","1"],
-  ["1","1","0","0","1"],
-  ["0","0","1","0","0"],
-  ["0","0","0","1","1"]
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"]
 ]))
 
 '''print(main([
