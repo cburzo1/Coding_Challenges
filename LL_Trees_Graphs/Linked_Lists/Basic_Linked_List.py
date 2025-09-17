@@ -7,6 +7,7 @@ class LL:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.length = 0
 
     def insert_at_end(self, val):
         newnode = Node()
@@ -19,6 +20,8 @@ class LL:
             self.tail.next = newnode
             self.tail = newnode
 
+        self.length += 1
+
     def insert_at_front(self, val):
         newnode = Node()
         newnode.data = val
@@ -29,6 +32,8 @@ class LL:
         else:
             newnode.next = self.head
             self.head = newnode
+
+        self.length += 1
 
     def del_at_end(self):
         if self.head is None:  # Case 1: empty list
@@ -48,6 +53,8 @@ class LL:
         current.next = None
         self.tail = current
 
+        self.length -= 1
+
     def del_in_front(self):
         if self.head is None:  # Case 1: empty list
             print("As empty as humanly possible")
@@ -58,18 +65,55 @@ class LL:
         if self.head is None:  # Case 2: list became empty
             self.tail = None
 
+        self.length -= 1
+
     def insert_at_idx(self,val, idx):
         newnode = Node()
         newnode.data = val
 
-        count = 0
-        current = self.head
+        if idx >= self.length:
+            self.insert_at_end(val)
+        elif idx <= 0:
+            self.insert_at_front(val)
+        else:
+            count = 0
+            current = self.head
 
-        while count < idx:
-            current = current.next
-            count += 1
+            while count < (idx - 1):
+                current = current.next
+                count += 1
 
-        print(current.data, ' heelo')
+            print(current.data, ' heelo')
+            newnode.next = current.next
+            current.next = newnode
+
+        self.length += 1
+
+    def delete_at_idx(self, idx):
+
+        if self.head is None:
+            print("LL is empty")
+            return
+
+        if idx >= self.length:
+            self.del_at_end()
+        elif idx <= 0:
+            self.del_in_front()
+        else:
+
+            count = 0
+            current = self.head
+
+            while count < (idx - 1):
+                current = current.next
+                count += 1
+
+            print(current.data, ' heelo')
+            to_delete = current.next
+            current.next = current.next.next
+            to_delete = None
+
+        self.length -= 1
 
     def traverse(self):
         current = self.head
@@ -85,8 +129,14 @@ ll.insert_at_end(2)
 ll.insert_at_end(7)
 ll.insert_at_end(20)
 ll.insert_at_end(12)
-ll.insert_at_front(2)
-ll.insert_at_front(78)
-ll.insert_at_idx(99, 3)
 
-#ll.traverse()
+ll.insert_at_idx(50, 2)
+ll.delete_at_idx(3)
+ll.delete_at_idx(3)
+ll.delete_at_idx(3)
+ll.delete_at_idx(2)
+ll.delete_at_idx(2)
+ll.delete_at_idx(1)
+ll.delete_at_idx(0)
+print()
+ll.traverse()
