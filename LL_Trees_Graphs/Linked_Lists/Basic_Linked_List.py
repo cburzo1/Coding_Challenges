@@ -83,7 +83,6 @@ class LL:
                 current = current.next
                 count += 1
 
-            print(current.data, ' heelo')
             newnode.next = current.next
             current.next = newnode
 
@@ -108,15 +107,24 @@ class LL:
                 current = current.next
                 count += 1
 
-            print(current.data, ' heelo')
             to_delete = current.next
             current.next = current.next.next
             to_delete = None
 
         self.length -= 1
 
-    def traverse(self):
-        current = self.head
+    def reverse(self):
+        #self.traverse()
+        oldhead = self.head
+        self.head = self.tail
+        self.tail = oldhead
+        oldhead = None
+
+        print(self.head.data, self.tail.data)
+        #self.traverse(self.tail)
+
+    def traverse(self, head):
+        current = head
 
         while current is not None:
             print(current.data)
@@ -131,12 +139,6 @@ ll.insert_at_end(20)
 ll.insert_at_end(12)
 
 ll.insert_at_idx(50, 2)
-ll.delete_at_idx(3)
-ll.delete_at_idx(3)
-ll.delete_at_idx(3)
-ll.delete_at_idx(2)
-ll.delete_at_idx(2)
-ll.delete_at_idx(1)
-ll.delete_at_idx(0)
+
 print()
-ll.traverse()
+ll.reverse()
