@@ -1,0 +1,20 @@
+Dynamic programming Idea:
+------------------------
+Strategy for solving optimization problems. For a given problem
+p, you have an objective and constraints. For this problem p, there
+may be many solutions. Feasable solutions are the solutions that satisfy
+the constraints. In this set of feasable solutions, we have an optimal
+solution. Dynamic programming is a strategy to help solve these problems.
+Dynamic programming will try to find all possible solutions and pick the
+best possible solution. THis is in constrast to Greedy which just directly
+goes to the solution by taking the very next best choice in every step. But
+we dont know if that solution is truly the best when we run Greedy.
+
+
+Dynamic Programming and Recursion:
+---------------------------------
+Recursion will allow us to brute force through all possible solutions. DP
+can help us convert Recursion to iteration which is a factor for optimiza-
+tion. for tree problems you have to use stacks anyway so recursion there is
+slightly optimal because you can use the stack system provided by the OS.
+but in normal problems, recursion adds overhead with unnecessary traversals.
