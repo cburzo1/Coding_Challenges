@@ -120,8 +120,25 @@ class LL:
         self.tail = oldhead
         oldhead = None
 
-        print(self.head.data, self.tail.data)
-        #self.traverse(self.tail)
+        #print(self.head.data, self.tail.data)
+
+        p = self.tail.next
+        t = p.next
+        r = self.tail
+        self.tail.next = None
+
+        while t.next is not None:
+            p.next = r
+            r = p
+            p = t
+            t = t.next
+
+        p.next = r
+        t.next = p
+
+        #print(r.data, p.data, t.data)
+
+        self.traverse(self.head)
 
     def traverse(self, head):
         current = head
@@ -139,6 +156,8 @@ ll.insert_at_end(20)
 ll.insert_at_end(12)
 
 ll.insert_at_idx(50, 2)
+
+ll.traverse(ll.head)
 
 print()
 ll.reverse()
