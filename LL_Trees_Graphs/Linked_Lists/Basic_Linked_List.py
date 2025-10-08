@@ -113,19 +113,18 @@ class LL:
 
         self.length -= 1
 
-    def reverse(self):
-        #self.traverse()
-        oldhead = self.head
-        self.head = self.tail
-        self.tail = oldhead
+class LL_OPs:
+
+    def reverse(self, head, tail):
+        oldhead = head
+        head = tail
+        tail = oldhead
         oldhead = None
 
-        #print(self.head.data, self.tail.data)
-
-        p = self.tail.next
+        p = tail.next
         t = p.next
-        r = self.tail
-        self.tail.next = None
+        r = tail
+        tail.next = None
 
         while t.next is not None:
             p.next = r
@@ -136,28 +135,83 @@ class LL:
         p.next = r
         t.next = p
 
-        #print(r.data, p.data, t.data)
+        return head
 
-        self.traverse(self.head)
+    def sort_list(self, head, siz):
+        p = head
+        t = head.next
+        i = siz
+        while i > 0:
+            while t is not None:
+                if p.data > t.data:
+                    temp = p.data
+                    p.data = t.data
+                    t.data = temp
+
+                p = p.next
+                t = t.next
+
+            p = head
+            t = head.next
+            i -= 1
+
+        return head
+
+    def merged_sorted_lists(self, head_1, head_2):
+        ll_3 = LL()
+        p = head_1
+        t = head_2
+
+        while p is not None and t.next is not None:
+            if p.data < t.data:
+                ll_3.insert_at_end(p.data)
+                p = p.next
+            else:
+                ll_3.insert_at_end(t.data)
+                t = t.next
+
+        while p is not None:
+            ll_3.insert_at_end(p.data)
+            p = p.next
+
+        while t is not None:
+            ll_3.insert_at_end(t.data)
+            t = t.next
+
+        self.traverse(ll_3.head)
 
     def traverse(self, head):
         current = head
 
         while current is not None:
-            print(current.data)
+            print(current.data, end = " ")
             current = current.next
 
-ll = LL()
+ll_1 = LL()
+ll_2 = LL()
+ll_ops = LL_OPs()
 
-ll.insert_at_end(5)
-ll.insert_at_end(2)
-ll.insert_at_end(7)
-ll.insert_at_end(20)
-ll.insert_at_end(12)
+ll_1.insert_at_end(5)
+ll_1.insert_at_end(2)
+ll_1.insert_at_end(7)
+ll_1.insert_at_end(20)
+ll_1.insert_at_end(12)
 
-ll.insert_at_idx(50, 2)
+ll_2.insert_at_end(9)
+ll_2.insert_at_end(15)
+ll_2.insert_at_end(3)
+ll_2.insert_at_end(4)
+ll_2.insert_at_end(30)
+ll_2.insert_at_end(100)
+ll_2.insert_at_end(55)
+ll_2.insert_at_end(24)
 
-ll.traverse(ll.head)
+ll_2_sorted = ll_ops.sort_list(ll_2.head, 5)
+ll_1_sorted = ll_ops.sort_list(ll_1.head, 8)
 
+ll_ops.merged_sorted_lists(ll_1_sorted, ll_2_sorted)
+
+'''ll_ops.traverse(ll_1_sorted)
 print()
-ll.reverse()
+ll_ops.traverse(ll_2_sorted)'''
+
