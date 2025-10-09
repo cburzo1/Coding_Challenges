@@ -163,6 +163,7 @@ class LL_OPs:
         t = head_2
 
         while p is not None and t.next is not None:
+            print(p.data, t.data)
             if p.data < t.data:
                 ll_3.insert_at_end(p.data)
                 p = p.next
@@ -214,4 +215,3 @@ ll_ops.merged_sorted_lists(ll_1_sorted, ll_2_sorted)
 '''ll_ops.traverse(ll_1_sorted)
 print()
 ll_ops.traverse(ll_2_sorted)'''
-
