@@ -88,6 +88,16 @@ class LL:
 
         self.length += 1
 
+    def create_cycle(self, head, tail, idx):
+        current = head
+        count = 0
+
+        while count < 1:
+            current = current.next
+            count += 1
+
+        tail.next = current
+
     def delete_at_idx(self, idx):
 
         if self.head is None:
@@ -188,29 +198,30 @@ class LL_OPs:
             print(current.data, end = " ")
             current = current.next
 
+    def detect_cycle(self, head):
+        p = head
+        t = head
+
+        while t is not None and t.next is not None:
+            p = p.next
+            t = t.next.next
+
+            if p is t:
+                return True  # cycle detected
+
+        return False  # reached end → no cycle
+
 ll_1 = LL()
-ll_2 = LL()
 ll_ops = LL_OPs()
 
 ll_1.insert_at_end(5)
 ll_1.insert_at_end(2)
 ll_1.insert_at_end(7)
-ll_1.insert_at_end(20)
-ll_1.insert_at_end(12)
+ll_1.insert_at_end(4)
 
-ll_2.insert_at_end(9)
-ll_2.insert_at_end(15)
-ll_2.insert_at_end(3)
-ll_2.insert_at_end(4)
-ll_2.insert_at_end(30)
-ll_2.insert_at_end(100)
-ll_2.insert_at_end(55)
-ll_2.insert_at_end(24)
+ll_1.create_cycle(ll_1.head, ll_1.tail, 1)
 
-ll_2_sorted = ll_ops.sort_list(ll_2.head, 5)
-ll_1_sorted = ll_ops.sort_list(ll_1.head, 8)
-
-ll_ops.merged_sorted_lists(ll_1_sorted, ll_2_sorted)
+print(ll_ops.detect_cycle(ll_1.head))
 
 '''ll_ops.traverse(ll_1_sorted)
 print()
