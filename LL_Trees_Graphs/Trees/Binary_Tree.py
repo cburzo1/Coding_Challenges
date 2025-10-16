@@ -89,19 +89,36 @@ class BinaryTree:
                 print(dq.rc.data)
                 Q.append(dq.rc)
 
+    def lowest_common_ancestor(self, root, p, q):
+        if root is None:
+            return None
+
+        if root.data == p or root.data == q:
+            return root.data
+
+        l = self.lowest_common_ancestor(root.lc, p, q)
+        r = self.lowest_common_ancestor(root.rc, p, q)
+
+        if l and r:
+            return root.data
+        else:
+            return l or r
+
+
 bt = BinaryTree()
 
-bt.createBinaryTree('a')
-bt.createBinaryTree('b')
-bt.createBinaryTree('c')
-bt.createBinaryTree('d')
-bt.createBinaryTree('e')
+bt.createBinaryTree(3)
+bt.createBinaryTree(5)
+bt.createBinaryTree(1)
+bt.createBinaryTree(6)
+bt.createBinaryTree(2)
 bt.createBinaryTree(None)
 bt.createBinaryTree(None)
 bt.createBinaryTree(None)
 bt.createBinaryTree(None)
-bt.createBinaryTree('f')
+bt.createBinaryTree(7)
 bt.createBinaryTree(None)
 
-bt.pre_order(bt.root)
-print(bt.get_max_depth(bt.root))
+#bt.level_order(bt.root)
+
+print(bt.lowest_common_ancestor(bt.root,  2, 1))
